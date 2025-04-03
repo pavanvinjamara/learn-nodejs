@@ -1,7 +1,7 @@
 // Modules
 
 // Normally we import modules using require statement
-// Os Module
+// Os Module(Operating System)
 
 // importing os modules using require
 const os = require('os');
