@@ -27,3 +27,60 @@ fs.readFile('demo.txt', 'utf8', (err, data)=>{
     console.log(data)
 })
 // if we not use encoder utf8 we get buffer code, Tocheck that remove utf8 from arg and run. you get buffer code in terminal.
+
+// ==> Create a file  
+// Using writeFile method we can create a file 
+// This method takes three arguments, 
+// 1) file Name ,
+// 2) encoder (utf8) or Content,
+// 3) function which has one argument error
+
+fs.writeFile("example.html", 'utf8',(err)=>{
+    if(err)
+        console.log(err);
+    else
+        console.log("file is created");
+})
+// by using this we created example.html
+
+// Adding Content to file
+//  same like above just in place of utf8 pass content
+
+let content = "welcome to dynamic created file and content"
+
+fs.writeFile("sample.txt", content,(err)=>{
+    if(err)
+        console.log(err);
+    else
+        console.log("file is created");
+})
+
+// Rename file name using fs Module
+// Using rename method we can modify the file name which is already existed.
+// This method takes three arguments, 
+// 1) existed file Name ,
+// 2) new name,
+// 3) function which has one argument error
+
+fs.rename('sample.txt', 'changeSample.txt', (err)=>{
+    if(err)
+        console.log(err);
+    else
+        console.log("changed name Successfully")
+})
+
+// Deleting the file 
+// Using unlink method you can delete the file which is existed
+// This method takes two arguments, 
+// 1) existed file Name ,
+// 2) function which has one argument error
+
+fs.unlink('changeSample.txt', (err)=>{
+    if(err)
+        console.log(err);
+    else
+        console.log("deleted file Successfully")
+})
+
+// By using fs Module you can perform curd operation
+// try examples with chatgtp
