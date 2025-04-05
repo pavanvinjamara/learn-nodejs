@@ -1,4 +1,4 @@
-
+// Path Module
 // To know current folder and file
 console.log(__dirname); // for folder
 console.log(__filename); // for file

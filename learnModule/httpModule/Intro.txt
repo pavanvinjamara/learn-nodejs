@@ -1,0 +1,23 @@
+// HTTP Module - (Hyper Text Transfer Protocol)
+
+//To know How hhtp work ? we Should know first how web works ?
+// Web works on client-server model
+// The devices which are connected to internet (laptop, mobiles etc)
+
+// Client
+// A client is a device or application that sends requests to a server in order to access data or services.
+// Example: When you open a website on your phone or computer, your device acts as the client.
+
+// Internet 
+// The Internet is a global network of computers and servers that are connected to share information and resources. It allows people to send messages, browse websites, watch videos, use apps, and much more.
+
+// Server
+// A server is a computer or program that provides data, services, or resources to clients over a network.
+// Example: When you visit a website, the server sends the necessary files (HTML, CSS, images, etc.) to your browser.
+
+// Web Browser
+// A web browser is a software application that allows users to access and view websites. It acts as a client and communicates with web servers using HTTP/HTTPS.
+// Examples: Google Chrome, Mozilla Firefox, Microsoft Edge, Safari.
+
+// Client - Server Communication
+// To make understand response and request between client and server is called HTTP 
