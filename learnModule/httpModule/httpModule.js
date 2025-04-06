@@ -29,5 +29,3 @@ let myServer =http.createServer((request, response)=>{
 // the method takes one argument which is number
 
 myServer.listen(3000);
-
-

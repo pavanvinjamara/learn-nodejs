@@ -1,0 +1,13 @@
+// A local module in Node.js is a custom JavaScript module that you create yourself in your application, as opposed to built-in (like fs, http) or third-party modules (like express).
+
+// Local modules are files or sets of files that encapsulate reusable logic, functions, objects, or classes — and are imported using require() (CommonJS) or import (ES Module syntax).
+
+
+// 🔹 Why Use Local Modules?
+// Modularity: Keep code organized and separated into small files.
+
+// Reusability: Functions and logic can be reused in multiple places.
+
+// Maintainability: Easier to read, debug, and manage code.
+
+// Encapsulation: Keeps private logic hidden, only exposes what's needed.
