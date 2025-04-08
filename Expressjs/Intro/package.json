@@ -1,0 +1,15 @@
+{
+  "name": "expressjs",
+  "version": "1.0.0",
+  "description": "class one on express js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "author": "vinjamara pavan kumar",
+  "license": "ISC",
+  "dependencies": {
+    "nodemon": "^3.1.9"
+  }
+}

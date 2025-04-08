@@ -1,0 +1,12 @@
+Express.js is a minimal and flexible web application framework for Node.js, designed to build web applications 
+
+Fast and lightweight – built on Node.js.
+
+Middleware support – lets you add functions at different stages of the request-response cycle.
+
+Routing – powerful and easy-to-use URL routing system.
+
+Template engine integration – supports Pug, EJS, Handlebars, etc.
+
+Scalable – great for building single-page, multipage, or hybrid web apps.
+
