@@ -1,0 +1,20 @@
+What is Middleware?
+Middleware is code that runs between the request and response in a web application. It processes the request before it reaches the endpoint (route handler) and/or processes the response before it’s sent back to the client.
+
+Think of Middleware as:
+A series of gates or filters a request must pass through before reaching the final destination.
+
+📌 Common Uses of Middleware:
+Authentication – Check if a user is logged in.
+
+Logging – Log details of each request.
+
+Validation – Validate data in requests.
+
+Error Handling – Catch and handle errors.
+
+CORS – Enable cross-origin resource sharing.
+
+Request Modification – Add headers, parse JSON/body, etc.
+
+
