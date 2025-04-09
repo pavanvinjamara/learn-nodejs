@@ -1,0 +1,14 @@
+* Creating web server using express js
+==> Create a folder open in vs code
+==> Initialize node init using the command npm init (! check the folder path)
+==> Install the packages like express and nodemon using the command in terminal (npm i express nodemon) (!!  check the folder path)
+==> You can check the package or insalled or not in package.json dependencies
+
+==>  In package.json  we have script key and it has value which is a object,
+===> In that create a key 'start' and it's value is a string (nodemon filename) as shown in below
+===============> "start": "nodemon index.js"
+
+==> Use the command in terminal "npm start" which run the file continously and we check output * * check the folder path
+===>To stop terminal click (Ctrl + C) it ask's Y/N type y to stop terminal
+
+==> Now you can create a file (app.js);

@@ -16,4 +16,4 @@
 //  ===============> "start": "nodemon index.js"
 // Step 3 Use the command in terminal "npm start" which run the file continously and we check output * * check the folder path
 // To stop terminal click (Ctrl + C) it ask's Y/N type y to stop terminal
-console.log("pavan");
+console.log("pavan");    
