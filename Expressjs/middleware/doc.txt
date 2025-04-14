@@ -1,6 +1,8 @@
 What is Middleware?
 Middleware is code that runs between the request and response in a web application. It processes the request before it reaches the endpoint (route handler) and/or processes the response before it’s sent back to the client.
 
+Middleware can be present one or more between request and response.
+
 Think of Middleware as:
 A series of gates or filters a request must pass through before reaching the final destination.
 
@@ -16,4 +18,14 @@ Error Handling – Catch and handle errors.
 CORS – Enable cross-origin resource sharing.
 
 Request Modification – Add headers, parse JSON/body, etc.
+****************** Routes **************************
 
+To implement Middleware we need the routes also
+
+In Expressjs, Routes are like that tell your web application how to respond to different Http Request, URLs or endpoints.
+
+Routes are used to define what happens when a user visits a specificURL on our website or makes a request to your API.
+
+Routes help us to organize our application's functionality and determine what content or data should be sent back to the user in response to their request.
+
+In Express.js, a route defines how an application responds to a client request to a particular endpoint, which is a combination of a path and an HTTP method (like GET, POST, PUT, DELETE).
