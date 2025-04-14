@@ -1,0 +1,80 @@
+📘 1. Data Structures
+Where to learn:
+
+GeeksforGeeks Data Structures
+
+CS50 (Harvard - YouTube)
+
+freeCodeCamp’s DSA Playlist
+
+🧰 2. Software Methodology
+Where to learn:
+
+Software Engineering Crash Course (YouTube)
+
+Coursera: Software Processes and Agile Practices
+
+Git & GitHub by freeCodeCamp
+
+📊 3. Algorithms Analysis
+Where to learn:
+
+MIT OpenCourseWare - Introduction to Algorithms
+
+VisuAlgo.net (visualize algorithms)
+
+Leetcode (for hands-on practice)
+
+🗃️ 4. Database Management
+Where to learn:
+
+Khan Academy SQL Course
+
+freeCodeCamp Full MySQL Tutorial
+
+MongoDB Basics (NoSQL)
+
+🤖 5. Artificial Intelligence
+Where to learn:
+
+AI for Everyone by Andrew Ng (Coursera)
+
+freeCodeCamp AI Playlist
+
+Google AI
+
+🌐 6. Internet Technology
+Where to learn:
+
+CS50 Web Track
+
+Internet Fundamentals - Mozilla
+
+HTTP Crash Course (YouTube)
+
+🖥️ 7. Systems Programming
+Where to learn:
+
+Operating Systems - Neso Academy (YouTube)
+
+CS50 (again – includes systems concepts)
+
+Linux and C Programming (paid, but great)
+
+🧠 8. Computer Architecture
+Where to learn:
+
+Computer Architecture - Neso Academy (YouTube)
+
+CS:APP Book (Computer Systems: A Programmer's Perspective)
+
+CrashCourse Computer Science (good beginner-friendly series)
+
+✅ Tips for Studying
+Use YouTube and freeCodeCamp for crash courses.
+
+Try Coursera/edX for structured university-style learning.
+
+Practice coding daily on Leetcode, HackerRank, or Codeforces.
+
+Use Notion or Google Docs to take notes and track progress.

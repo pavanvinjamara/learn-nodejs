@@ -17,7 +17,7 @@ Error Handling – Catch and handle errors.
 
 CORS – Enable cross-origin resource sharing.
 
-Request Modification – Add headers, parse JSON/body, etc.
+
 ****************** Routes **************************
 
 To implement Middleware we need the routes also
