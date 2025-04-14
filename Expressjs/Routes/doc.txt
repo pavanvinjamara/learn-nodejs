@@ -1,0 +1,28 @@
+Routes
+
+In Express.js, a route defines how an application responds to a client request to a particular endpoint, which is a combination of a path and an HTTP method (like GET, POST, PUT, DELETE).
+
+Basic Route Syntax
+    app.METHOD(PATH, HANDLER)
+
+==> app: The instance of Express.
+
+==> METHOD: The HTTP method (GET, POST, etc.).
+
+==> PATH: The endpoint (e.g., "/users").
+
+==> HANDLER: The function that executes when the route is matched.
+
+
+Basic Syntax
+
+    app.get('/', (req, res) => {
+        res.send('Hello, world!');
+    });
+    
+
+Method	        Purpose
+GET	            Read or retrieve data
+POST	        Create new data
+PUT	            Update existing data
+DELETE	        Delete data

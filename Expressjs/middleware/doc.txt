@@ -17,4 +17,3 @@ CORS – Enable cross-origin resource sharing.
 
 Request Modification – Add headers, parse JSON/body, etc.
 
-
