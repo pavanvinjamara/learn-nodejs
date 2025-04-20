@@ -1,0 +1,12 @@
+Sign up / Login  in mongoDB Atlas
+
+1. create a project.
+2. create a cluster and user. 
+3.Take a the connecting url from driver option in mongoDB.
+
+4.  create a folder with any name 
+5.  create a file server.js 
+6.  we show output using above file which is like a gate way
+7.  Open the terminal use the command npm init, npm i express nodemon dotenv
+
+8. username and password important for url and in password @ => %40 for special charator we should give code

@@ -1,0 +1,48 @@
+Connecting with mongoDB using nodejs & ExpressJs
+
+what is Database ?
+
+A database is an organized collection of data that can be easily accessed, managed, and updated. Think of it like a digital filing system that stores information in a structured way.
+
+🔑 Key Points:
+Data: Can be anything—names, numbers, images, videos, documents.
+
+Organized: Stored in tables, rows, columns (in relational databases), or collections and documents (in NoSQL databases).
+
+Accessed: Through software like Database Management Systems (DBMS) such as MySQL, MongoDB, PostgreSQL, etc.
+
+💡 Example:
+Let’s say you run an online store. Your database might have:
+
+A table for users (name, email, password)
+
+A table for products (name, price, quantity)
+
+A table for orders (user ID, product ID, date)
+
+🧠 Types of Databases:
+Relational Database (SQL): Data is stored in tables (MySQL, PostgreSQL, SQLite)
+
+NoSQL Database: Flexible data models (MongoDB, CouchDB)
+
+In-Memory Database: Super-fast access (Redis)
+
+Cloud Database: Hosted online (Firebase, AWS RDS)
+
+******************************* Class**********
+
+There are so many databases but we mostly use development databases are two types 
+
+* relational Database Management System (RDBMS)
+* NoSQL Database
+
+SQL means structured Query Language means structured data
+NoSQL means Binary JSON Format it is also called BSON Format un structured Data
+BSON Format is similar to plain JSON Format or text document format
+This BSON format is used mongoDB for data storage and data interchange purposes. 
+
+************ MongoDB***** 
+def: MongoDB is a popular open-source. NoSQL database Management system(DBMS) that is designed for handling large amounts of unstructred or semi-structured data.
+MongoDB is often used for applications that require flexible, scalable, and high-performance data storage and retrieval
+
+we are using mongoDB Atlas
