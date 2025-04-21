@@ -1,0 +1,73 @@
+What is an API?
+API stands for Application Programming Interface. It is a set of rules and protocols that enables different software applications to communicate and share data with each other.
+
+At a basic level, imagine you have two parts of a system:
+
+    * The frontend, also known as the client, which is what users interact with.
+
+    * The backend, also known as the server, which handles data processing, storage, and logic behind the scenes.
+
+    * The API acts as a bridge between the client and the server. When the client needs some information or wants to perform an action, it sends a request to the server through the API. The server then processes that request and sends back a response—again through the API.
+
+In simple terms, APIs are what allow the client and server to talk to each other and exchange information efficiently and securely.
+
+Basically, we use more in web applications, in web applications we use two types of API
+1. SOAP
+2. REST (we use more)
+
+
+REST API ()
+REST API stands for Representational state Transfer Application Programming Interface. It is a set of rules and conventions for buliding and interacting with web services.
+It is a style of software architecture for designing networked applicants. REST APIs are designed to enable communicate between different software systems over the internet by using standard HTTP methods and principles.
+
+By using this we can perform CRUD operations(Create-Read-Update-Delete)
+A RESTful Api for CRUD(Create, Read, Update, Delete) operations typically allows to perform these basic actions on resources (data objects) through HTTP methods. Below I'll provide a basic overview of restApi web services.
+
+
+TO Perform this RESTful api we use HTTP methods. They are GET, POST, PUT, DELETE
+
+1. GET          - get data
+2. POST         - post or store data
+3. PUT           - update data
+4. DELETE       - delete data
+
+Routes
+A route defines how an application responds to a client request to a particular endpoint, which is a combination of a path and an HTTP method (like GET, POST, PUT, DELETE).
+
+
+What is MVC (Model-View-Controller)?
+MVC is a software design pattern that helps organize code in a clean and manageable way by separating an application into three main parts:
+
+1. Model – Data & Logic
+The Model is responsible for handling the data and business logic of the application.
+It communicates with the database, performs calculations, and manages the core functionality.
+
+Example: In a blog application, the Model would handle posts, comments, and user data.
+
+2. View – User Interface
+The View is what the user sees on the screen.
+It displays the data provided by the Model and sends user actions (like button clicks or form submissions) to the Controller.
+
+Example: The webpage that shows a list of blog posts or a form to submit a new post.
+
+3. Controller – Request Handler
+The Controller acts as a bridge between the Model and the View.
+It receives user inputs from the View, processes them (often using the Model), and then returns the appropriate View with updated data.
+
+Example: When a user submits a new blog post, the Controller takes that data, tells the Model to save it, and then updates the View.
+
+How They Work Together:
+User interacts with the View (e.g., clicks a button).
+
+Controller handles that interaction and makes decisions.
+
+Model is used to fetch or update data.
+
+The updated data is sent back to the View to be displayed.
+
+Why Use MVC?
+Keeps code organized and easier to maintain
+
+Separates concerns: logic, interface, and control flow are kept separate
+
+Makes it easier to scale and test your application
