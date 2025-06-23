@@ -1,0 +1,5 @@
+1. Create a server - refer connectToMongoDB folder
+
+2. Connect with mongoDB using mongoose - refer connectToMongoDB folder
+
+3. Create a model/models

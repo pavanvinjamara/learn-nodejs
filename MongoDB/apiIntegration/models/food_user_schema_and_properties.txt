@@ -1,0 +1,172 @@
+
+==============================
+🍽️ userSchema for Food Application
+==============================
+
+const mongoose = require('mongoose');
+
+const userSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+    lowercase: true,
+    trim: true,
+  },
+  password: {
+    type: String,
+    required: true,
+    minlength: 6,
+  },
+  phone: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  address: [
+    {
+      label: { type: String },
+      street: String,
+      city: String,
+      state: String,
+      country: String,
+      zip: String,
+      coordinates: {
+        lat: Number,
+        lng: Number
+      },
+      isDefault: { type: Boolean, default: false }
+    }
+  ],
+  profileImage: {
+    type: String,
+    default: '',
+  },
+  favoriteRestaurants: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Restaurant',
+    }
+  ],
+  cart: [
+    {
+      foodItem: { type: mongoose.Schema.Types.ObjectId, ref: 'MenuItem' },
+      restaurant: { type: mongoose.Schema.Types.ObjectId, ref: 'Restaurant' },
+      quantity: { type: Number, default: 1 },
+      notes: { type: String, default: '' }
+    }
+  ],
+  orders: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Order'
+    }
+  ],
+  role: {
+    type: String,
+    enum: ['customer', 'admin', 'delivery'],
+    default: 'customer',
+  },
+  isActive: {
+    type: Boolean,
+    default: true,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  }
+});
+
+module.exports = mongoose.model('User', userSchema);
+
+==============================
+🧠 Field Explanation
+==============================
+
+- name: User's full name
+- email: Used for login, must be unique
+- password: Hashed password for security
+- phone: Used for delivery coordination, OTP
+- address[]: Array of delivery addresses
+- coordinates: lat/lng used for delivery location
+- profileImage: Optional avatar URL
+- favoriteRestaurants[]: Saved preferred restaurants
+- cart[]: Temporary list of items to order
+- notes: Special food instructions
+- orders[]: Past order references
+- role: Defines whether user is admin, delivery agent, or customer
+- isActive: Enables or disables account
+- createdAt: Timestamp of account creation
+
+==============================
+🧱 Mongoose Schema Property Explanations
+==============================
+
+1. type
+   - Defines the data type of the field
+   - Example: name: { type: String }
+
+2. required
+   - Ensures the field is mandatory
+   - Example: email: { required: true }
+
+3. trim
+   - Removes whitespace from strings
+   - Example: name: { trim: true }
+
+4. unique
+   - Ensures values are not duplicated in the collection
+   - Example: email: { unique: true }
+
+5. lowercase
+   - Converts strings to lowercase
+   - Example: email: { lowercase: true }
+
+6. minlength / maxlength
+   - Restrict string length
+   - Example: password: { minlength: 6 }
+
+7. enum
+   - Restrict field to specific values
+   - Example: role: { enum: ['customer', 'admin'] }
+
+8. default
+   - Provides a default value if not set
+   - Example: isActive: { default: true }
+
+9. validate
+   - Adds custom validation logic
+   - Example:
+     email: {
+       validate: {
+         validator: function (v) { return /.+@.+\..+/.test(v); },
+         message: props => `${props.value} is not a valid email!`
+       }
+     }
+
+10. ref
+    - Sets up a reference to another model (like foreign key)
+    - Example: orders: [{ type: ObjectId, ref: 'Order' }]
+
+==============================
+Summary Table
+==============================
+
+| Property     | Purpose                                          | Example                    |
+|--------------|--------------------------------------------------|-----------------------------|
+| type         | Define data type                                 | type: String                |
+| required     | Make field mandatory                             | required: true              |
+| trim         | Remove whitespace from strings                   | trim: true                  |
+| unique       | Ensure no duplicates                             | unique: true                |
+| lowercase    | Save value in lowercase                          | lowercase: true             |
+| minlength    | Enforce minimum string length                    | minlength: 6                |
+| maxlength    | Enforce maximum string length                    | maxlength: 100              |
+| enum         | Limit to specific values                         | enum: ['admin', 'user']     |
+| default      | Assign default value if not provided             | default: true               |
+| validate     | Run custom logic to check validity               | validate: { validator: fn } |
+| ref          | Reference another collection                     | ref: 'Order'                |

@@ -1,0 +1,90 @@
+
+Node.js: Explanation of `models/` and `controllers/` Folders
+
+1. models/ Folder
+
+Purpose:
+Contains all the data schema definitions and handles interactions with the database (e.g., MongoDB, MySQL).
+
+Responsibilities:
+- Define data structure (fields, types, validations).
+- Handle queries like find, save, update, delete.
+- Represent the "data" part of the app.
+
+Example Structure:
+models/
+├── User.js
+├── Product.js
+└── Order.js
+
+Naming Convention:
+- Use PascalCase (UpperCamelCase) for file names: User.js, Order.js.
+  - These represent classes or constructors, such as:
+    const User = mongoose.model('User', userSchema);
+- Model name (in code) should match the singular version of the entity.
+
+2. controllers/ Folder
+
+Purpose:
+Contains the logic for handling HTTP requests and controlling the flow between models and views/responses.
+
+Responsibilities:
+- Receive the request (req), interact with the model, send response (res).
+- Validate inputs, handle errors.
+- Decouple business logic from route definitions.
+
+Example Structure:
+controllers/
+├── userController.js
+├── productController.js
+└── orderController.js
+
+Naming Convention:
+- Use camelCase or kebab-case for file names: userController.js or user-controller.js.
+  - These are plain JavaScript files with functions, not classes.
+
+Why Use This Structure?
+- Separation of Concerns:
+  Each folder has a specific role: models for data, controllers for logic.
+- Scalability:
+  Makes the app easier to maintain and expand.
+- Readability & Team Collaboration:
+  Helps developers quickly understand and work on the project.
+
+Example Flow
+
+A POST /users route to create a new user might look like:
+
+Route File (routes/userRoutes.js):
+router.post('/users', userController.createUser);
+
+Controller (controllers/userController.js):
+const User = require('../models/User');
+
+exports.createUser = async (req, res) => {
+  try {
+    const user = new User(req.body);
+    await user.save();
+    res.status(201).json(user);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+};
+
+Model (models/User.js):
+const mongoose = require('mongoose');
+
+const userSchema = new mongoose.Schema({
+  name: String,
+  email: { type: String, unique: true },
+  password: String,
+});
+
+module.exports = mongoose.model('User', userSchema);
+
+Summary
+
+| Folder        | Purpose                          | Naming               | Example Files         |
+|---------------|----------------------------------|-----------------------|------------------------|
+| models/       | Define data structure, handle DB | PascalCase            | User.js, Order.js      |
+| controllers/  | Handle HTTP request logic        | camelCase or kebab    | userController.js      |

@@ -1,0 +1,76 @@
+========================================
+🧠 Beginner Explanation: ObjectId, ref, and enum in Mongoose
+========================================
+
+📌 What is mongoose.Schema.Types.ObjectId?
+
+- It is a special type of ID used in MongoDB.
+- It uniquely identifies a document.
+- Used to connect one document with another (like foreign key in SQL).
+
+Example:
+orders: [
+  {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Order'
+  }
+]
+
+This means:
+- 'orders' will hold an array of IDs.
+- Each ID belongs to a document in the 'Order' collection.
+- You can later fetch full order data using .populate().
+
+Example Use:
+User has many orders. You store only the Order IDs in the user.
+You use 'populate' to get full details of each order later.
+
+--------------------------------------------------
+
+📌 What is 'ref'?
+
+- 'ref' means "reference".
+- It tells Mongoose which model to look into when using ObjectId.
+
+Example:
+{
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
+}
+
+This tells Mongoose:
+"This field stores the ID of a User. If you populate, get the full User document."
+
+--------------------------------------------------
+
+📌 What is 'enum'?
+
+- 'enum' is used to allow only specific values in a field.
+
+Example:
+role: {
+  type: String,
+  enum: ['customer', 'admin', 'delivery'],
+  default: 'customer'
+}
+
+This means:
+- role must be 'customer', 'admin', or 'delivery'.
+- Anything else will throw a validation error.
+
+--------------------------------------------------
+
+🧠 Why use them?
+
+- ObjectId: To connect documents (User → Orders, Product → Category)
+- ref: To fetch related data
+- enum: To restrict values (like roles, statuses)
+
+--------------------------------------------------
+
+📋 Summary Table:
+
+| Property     | What It Does                                 | Example                                      |
+|--------------|----------------------------------------------|----------------------------------------------|
+| ObjectId     | Stores another document's ID                 | type: mongoose.Schema.Types.ObjectId         |
+| ref          | Tells which model to look for related doc    | ref: 'User'                                  |
+| enum         | Restrict to specific set of values           | enum: ['admin', 'customer', 'delivery']      |
