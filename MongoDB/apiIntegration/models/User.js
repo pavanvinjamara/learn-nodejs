@@ -2,11 +2,10 @@
 // Model name (in code) should match the singular version of the entity.
 
 // Import mongoose from mongoose
-
 const mongoose = require('mongoose');
 
 // Defining the user schema to save the data we need for user
-
+// variable = newKeyword mongoose.Schema() 
 const userSchema = new mongoose.Schema({
     // name , email , password, phone , address, profileImage,  cart, favoriteRestaurants, orders, role, isActive, createdAt
     name: {
@@ -104,5 +103,6 @@ const userSchema = new mongoose.Schema({
     }
 });
 
-// Export the user Schema
-module.exports = mongoose.model( 'User', userSchema );
+//  Export the user Schema
+//  module.exports = mongoose.model( name, controllers ); 
+    module.exports = mongoose.model( 'User', userSchema );

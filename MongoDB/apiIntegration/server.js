@@ -15,6 +15,10 @@ mongoose.connect(process.env.MONGO_URL)
 .catch((err)=>{
     console.log(err)
 })
+
+// Routes
+app.use('/api', require('./routes/index'));
+ 
 app.listen(PORT, ()=>{
     console.log(`server started @ ${PORT}`);
 }
