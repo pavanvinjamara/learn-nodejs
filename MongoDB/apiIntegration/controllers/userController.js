@@ -5,8 +5,6 @@ const createUser = async (req, res) => {
     try{
         const { name, email, password, phone } = req.body;
 
-        
-
         const hashedPassword = await bcrypt.hash( password, 10);
 
         const user = new User({
@@ -21,5 +19,7 @@ const createUser = async (req, res) => {
         res.status(500).json({ error: error.message })
     }
 }
+
+
 
 module.exports = { createUser };

@@ -34,7 +34,7 @@ const userSchema = new mongoose.Schema({
         required: true,
         trim: true,
         maxlength: 10,
-    }
+    },
 
     address: [
         {
@@ -64,7 +64,7 @@ const userSchema = new mongoose.Schema({
 
     favoriteRestaurants: [
         {
-            type: mongoose.Schema.Types.ObjectId
+            type: mongoose.Schema.Types.ObjectId,
             ref: 'Restaurant'
         }
     ],
@@ -90,18 +90,22 @@ const userSchema = new mongoose.Schema({
         type: String,
         enum: ['customer', 'admin', 'delivery'],
         default: 'customer',
-    }
+    },
 
     isActive: {
         type: Boolean,
         default: true,
-    }
+    },
 
     createdAt: {
         type: Date,
         default: Date.now
     }
 });
+userSchema.pre('save', async function (){
+    this.password = await bcrypt.hash(this.password , 10);
+
+})
 
 //  Export the user Schema
 //  module.exports = mongoose.model( name, controllers ); 

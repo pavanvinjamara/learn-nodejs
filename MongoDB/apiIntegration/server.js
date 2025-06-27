@@ -21,6 +21,6 @@ app.use('/api', require('./routes/index'));
  
 app.listen(PORT, ()=>{
     console.log(`server started @ ${PORT}`);
-}
+});
 
 // After
