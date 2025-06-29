@@ -1,0 +1,1 @@
+1. A controller is the final executor of a route, responsible for handling the core logic, querying/updating the database, and     returning a response — after middleware has validated or pre-processed the request.

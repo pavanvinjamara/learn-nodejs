@@ -2,25 +2,23 @@ const express = require('express');
 const dotEnv =  require('dotenv');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const connectDB = require('./config/db')
 
+dotEnv.config();
 const app = express();
 
 const PORT = process.env.PORT || 3000
 
-dotEnv.config();
-mongoose.connect(process.env.MONGO_URL)
-.then(() => {
-    console.log("MongoDB connected successfully")
-})
-.catch((err)=>{
-    console.log(err)
-})
+// It is a built-in middleware, Parses incoming JSON payloads from the request body
+app.use(express.json());
+
 
 // Routes
 app.use('/api', require('./routes/index'));
  
-app.listen(PORT, ()=>{
-    console.log(`server started @ ${PORT}`);
+connectDB().then(() => {
+    app.listen(PORT, () => {
+        console.log(`Server running on port ${PORT}`)
+    })
 });
-
 // After

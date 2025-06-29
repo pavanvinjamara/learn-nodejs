@@ -110,3 +110,4 @@ userSchema.pre('save', async function (){
 //  Export the user Schema
 //  module.exports = mongoose.model( name, controllers ); 
     module.exports = mongoose.model( 'User', userSchema );
+
