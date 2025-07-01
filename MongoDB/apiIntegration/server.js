@@ -2,7 +2,8 @@ const express = require('express');
 const dotEnv =  require('dotenv');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const connectDB = require('./config/db')
+const cookieParser = require('cookie-parser');
+const connectDB = require('./config/db');
 
 dotEnv.config();
 const app = express();
@@ -11,6 +12,9 @@ const PORT = process.env.PORT || 3000
 
 // It is a built-in middleware, Parses incoming JSON payloads from the request body
 app.use(express.json());
+
+// Use cookie-parser middleware
+app.use(cookieParser());
 
 
 // Routes
