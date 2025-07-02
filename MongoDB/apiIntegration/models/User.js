@@ -37,9 +37,9 @@ const userSchema = new mongoose.Schema({
         validate: {
             validator: function (value) {
                 return value === this.password;
-            }
+            },
+            message: 'Passwords do not match',
         },
-        message: 'Passwords do not match',
     },
 
     gender: {
@@ -91,7 +91,7 @@ const userSchema = new mongoose.Schema({
     cart: [
         {
             foodItem: { type: mongoose.Schema.Types.ObjectId, ref: 'MenuItem'},
-            restaurant: {type: mongoose.Schema.Types.ObjectId, ref: 'Resturant'},
+            restaurant: {type: mongoose.Schema.Types.ObjectId, ref: 'Restaurant'},
             quantity: {type: Number, default: 1},
             notes: { type: String, default: ''}
         }
@@ -105,11 +105,100 @@ const userSchema = new mongoose.Schema({
 
     ],
 
+    vendorDetails: {
+        businessName: {
+            type: String
+        },
+        type: {
+            type: String,
+            enum: [ 'restaurant', 'canteen', 'hotel'],
+            default: 'restaurant'
+        },
+        fssaiLicense: {
+            type: String
+        },
+        fssaiLicenseFile:{ type: String,
+        },
+        openingHours: {
+            open: String,
+            close: String,
+        },
+        address: { street, city, state, zip, country},
+        location: {
+            lat: Number,
+            lng: Number,
+        }
+
+        logo: String,
+
+    },
+
+    deliveryDetails: {
+        vechicleType: {
+            type: String,
+            enum:['bike', 'cycle', 'walk', 'auto'],
+            default: 'bike'
+        }
+        vechicleNumber: String,
+        drivingLicenseNumber: String,
+        drivingLicenseFile: String,
+        idProofNumber: {
+            type: String,
+        }
+        idProofFile: {
+            type: String,
+        }
+        photo: String,
+        
+    },
+
+    isVerified: {
+        type: Boolean,
+        default: function (){
+            return this.role === 'customer';
+        }
+    },
+
+    approvedByAdmin: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        default: null
+    },
+
+     otpCode: {
+        type: String,
+        default: null,
+
+    }
+    otpType: {
+        type: String,
+        default: null,
+
+    }
+
+    otpTarget: {
+        type: Date,
+        default: null,
+    }
+
+    otpExpires: {
+        type: String,
+        default: null,
+    }
+
+    isOtpVerified: {
+        type: Boolean,
+        default: false,
+    }
+
     role: {
         type: String,
-        enum: ['customer', 'admin', 'delivery'],
+        enum: ['customer', 'admin', 'delivery', 'vendor'],
         default: 'customer',
     },
+
+
+   
 
     isActive: {
         type: Boolean,
@@ -125,7 +214,7 @@ const userSchema = new mongoose.Schema({
 // Pre-save hook to hash password
 userSchema.pre('save', async function (next){
     // Do not proceed if user is inactive
-    if(!this.Active){
+    if(!this.isActive){
         const err = new Error('Inactive users cannot be saved');
         return next(err);
     }

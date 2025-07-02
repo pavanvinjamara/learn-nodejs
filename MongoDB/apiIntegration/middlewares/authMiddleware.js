@@ -65,4 +65,13 @@ const protect = async ( req, res, next ) => {
     }
 }
 
-module.exports = { validateSignup, checkExistingUser };
+const authorizeRoles = (...roles) => {
+    return (req, res, next) => {
+        if(!roles.includes(req.user.role)){
+            return res.status(403).json({ msg : "Access denied : insufficient permission"})
+        }
+        next(); //Proceed if the role is authorized
+    }
+}
+
+module.exports = { validateSignup, checkExistingUser, protect, authorizeRoles };
