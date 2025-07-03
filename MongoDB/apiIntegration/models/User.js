@@ -127,7 +127,7 @@ const userSchema = new mongoose.Schema({
         location: {
             lat: Number,
             lng: Number,
-        }
+        },
 
         logo: String,
 
@@ -138,16 +138,16 @@ const userSchema = new mongoose.Schema({
             type: String,
             enum:['bike', 'cycle', 'walk', 'auto'],
             default: 'bike'
-        }
+        },
         vechicleNumber: String,
         drivingLicenseNumber: String,
         drivingLicenseFile: String,
         idProofNumber: {
             type: String,
-        }
+        },
         idProofFile: {
             type: String,
-        }
+        },
         photo: String,
         
     },
@@ -168,37 +168,34 @@ const userSchema = new mongoose.Schema({
      otpCode: {
         type: String,
         default: null,
-
-    }
+    },
+    
     otpType: {
         type: String,
         default: null,
 
-    }
+    },
 
     otpTarget: {
         type: Date,
         default: null,
-    }
+    },
 
     otpExpires: {
         type: String,
         default: null,
-    }
+    },
 
     isOtpVerified: {
         type: Boolean,
         default: false,
-    }
+    },
 
     role: {
         type: String,
         enum: ['customer', 'admin', 'delivery', 'vendor'],
         default: 'customer',
     },
-
-
-   
 
     isActive: {
         type: Boolean,
