@@ -28,12 +28,8 @@ const signup = async (req, res) => {
             secure: false,
             maxAge: 7 * 24 * 60 * 60 * 1000, 
         }).status(201).json({
-            msg: "",
-            user: { 
-                id: user._id,
-                email: user.email,
-                role: user.role
-            }
+            user,
+            msg: "Account created successfully",
         }); // sending success status to client
     }
     catch( err ){
@@ -57,8 +53,9 @@ const login = async (req, res) => {
         maxAge: 7 * 24 * 60 * 60 * 1000,
     })
     .status( 200 ).json({
+        user,
         msg: 'Logged Successfully',
-        user: { id: user._id, email: user.email, role: user.role }
+        
     });
 };
 
