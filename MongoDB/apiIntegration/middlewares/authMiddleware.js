@@ -3,7 +3,7 @@ const User = require('../models/User');
 const jwt =  require('jsonwebtoken');
 
 
-// Validate input fields
+// Validate signup input fields
 const validateSignup = (req, res, next ) => {
 
     const { name, email, password, phone } = req.body;
@@ -46,6 +46,7 @@ const checkExistingUser = async ( req, res, next ) => {
 
 };
 
+// Middleware to protect routes ( requires login )
 const protect = async ( req, res, next ) => {
     
     const token = req.cookies.token;
@@ -53,8 +54,10 @@ const protect = async ( req, res, next ) => {
 
     try{
 
-        const decoded = jwt.verify( token, ProcessingInstruction.env.JWT_SCERET );
+        const decoded = jwt.verify( token, process.env.JWT_SCERET );
         req.user = await User.findById( decoded.id ).select('-password');
+        if(!req.user)
+            return res.status(401).json( {msg: 'User not found'});
         next();
 
     }
@@ -65,6 +68,7 @@ const protect = async ( req, res, next ) => {
     }
 }
 
+// Middleware for role-based access
 const authorizeRoles = (...roles) => {
     return (req, res, next) => {
         if(!roles.includes(req.user.role)){

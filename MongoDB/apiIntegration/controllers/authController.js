@@ -6,37 +6,42 @@
 const User = require('../models/User');
 const generateToken = require('../utils/generateToken');
 
+// Utils
+const sendTokenResponse = (user, res, message = "Success") => {
+    const token = generateToken(user);
 
+    res.cookie('token', token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'strict',
+        maxAge: process.env.COOKIE_EXIPRE  * 24 * 60 * 60 * 1000
+    });
+
+    res.status( res.statusCode || 200).json({
+        user,
+        msg: message,
+    });
+}
+
+// Signup Controller
 const signup = async (req, res) => {
     try{
-
-        const { name, email, password, phone } = req.body;
-
-        // create a user object using req.body and User constructor
-        const user = new User({
-            ...req.body,
-            password: hashedPassword,
-        })
+          // create a user object using req.body and User constructor
+        const user = new User(req.body);
 
         // save method is used to save data in database
         await user.save();
 
-        const token = generateToken( user );
-
-        res.cookie('token', token, {
-            httpOnly: true,
-            secure: false,
-            maxAge: 7 * 24 * 60 * 60 * 1000, 
-        }).status(201).json({
-            user,
-            msg: "Account created successfully",
-        }); // sending success status to client
+        sendTokenResponse(user, res, "Account created successfully");
     }
     catch( err ){
-        res.status(500).json({ error: error.message }) // sending error msg to client
+        if(err.code === 11000)
+            return res.status(400).json({ error: "Email or phone already exists"})
+        res.status(500).json({ error: err.message }) // sending error msg to client
     }
 };
 
+//Login Controller
 const login = async (req, res) => {
     const { email, password } = req.body;
 
@@ -45,19 +50,11 @@ const login = async (req, res) => {
         return res.status(401).json({ msg: 'Invalid credentials' });
     }
 
-    const token = generateToken(user);
-
-    res.cookie('token', token, {
-        httpOnly: true,
-        secure: false,
-        maxAge: 7 * 24 * 60 * 60 * 1000,
-    })
-    .status( 200 ).json({
-        user,
-        msg: 'Logged Successfully',
-        
-    });
+    sendTokenResponse(user, res, "Logged in successfully");
 };
+
+
+
 
 
 module.exports = { signup , login };

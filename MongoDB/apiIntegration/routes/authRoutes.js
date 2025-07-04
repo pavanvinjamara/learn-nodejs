@@ -8,4 +8,6 @@ const { validateSignup, checkExistingUser } = require('../middlewares/signup');
 router.post( '/signup', validateSignup, checkExistingUser, signup );
 
 
+
+
 module.exports = router;
